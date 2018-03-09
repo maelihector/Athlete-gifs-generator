@@ -93,6 +93,7 @@ $(document).ready(() => {
         var gif = $("#gif-input").val().trim();
         // prevent submit if text-input field is empty
         if (gif.length === 0) {
+            alert("Text-box is empty!")
             return false
         }
         // and add/push new gif to our gifs array
