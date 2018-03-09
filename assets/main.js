@@ -8,6 +8,7 @@ function displayGif() {
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=astronomy+" +
         gif + "&api_key=HxF2W3delLN8HvwXkOdecyRXMrU3FzgS&rating=g&limit=10"; // set rating=g and specify to return only 10 gifs with limit=10.
     // AJAX call
+
     $.get(queryURL)
 
         // Create a function that takes the AJAX returned Object, and label it as 'response', 
@@ -30,6 +31,13 @@ function displayGif() {
 
                 // Append the image
                 gifDiv.append(image);
+
+                // Retrieve the rating and store in 'rating' var
+                var rating = results[i].rating;
+                // Create a <p> to display rating
+                var p = $("<p>").text("Rating: " + rating);
+                // Append the paragraph
+                gifDiv.append(p);
 
                 // Add gifs to the beginning of gifs-view.
                 $("#gifs-view").prepend(gifDiv);
@@ -57,9 +65,8 @@ function renderButtons() {
         $("#buttons-view").append(a);
     }
 }
-// Add a click event listener to new all elements with a class of "gif-btn"
+// Add a click event listener to new all elements with a class of "gif-btn" and run displayGif function
 $(document).on("click", ".gif-btn", displayGif);
 
 // Call the renderButtons function to display the intial buttons
 renderButtons();
-
