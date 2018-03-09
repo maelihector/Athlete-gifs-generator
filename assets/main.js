@@ -84,6 +84,18 @@ function renderButtons() {
         $("#buttons-view").append(a);
     }
 }
+
+// Create function to handle the event for when an input value is submitted
+$("#add-gif").on("click", function (event) {
+    event.preventDefault();
+    // Grab the input from the textbox, trim white space
+    var gif = $("#gif-input").val().trim();
+    // and add/push new gif to our gifs array
+    gifs.push(gif);
+    // then call renderButtons() to generate its button
+    renderButtons();
+});
+
 // Add a click event listener to new all elements with a class of "gif-btn" and run displayGif function
 $(document).on("click", ".gif-btn", displayGif);
 
