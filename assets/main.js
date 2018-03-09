@@ -63,6 +63,39 @@ $(document).ready(() => {
             });
         })
     }
+
+    // Create function to handle the event for when an input value is submitted
+
+    // empty text field when user clicks on it
+
+    $("#gif-input").click(
+        function () {
+            $(this).val('');
+        });
+
+
+    $("#add-gif").on("click", function (event) {
+
+        event.preventDefault();
+
+
+        // Grab the input from the textbox, trim white space
+        var gif = $("#gif-input").val().trim();
+
+
+        // prevent submit if text-input field is empty
+        if (gif.length === 0) {
+            alert("Text-box is empty!")
+            return false
+        }
+
+        // and add/push new gif to our gifs array
+        gifs.push(gif);
+
+        // then call renderButtons() to generate new button
+        renderButtons();
+    });
+
     // Function for generating gif buttons
     function renderButtons() {
 
@@ -82,25 +115,9 @@ $(document).ready(() => {
             a.text(gifs[i]);
             // Adding the button to the buttons-view div
             $("#buttons-view").append(a);
+
         }
     }
-
-    // Create function to handle the event for when an input value is submitted
-
-    $("#add-gif").on("click", function (event) {
-        event.preventDefault();
-        // Grab the input from the textbox, trim white space
-        var gif = $("#gif-input").val().trim();
-        // prevent submit if text-input field is empty
-        if (gif.length === 0) {
-            alert("Text-box is empty!")
-            return false
-        }
-        // and add/push new gif to our gifs array
-        gifs.push(gif);
-        // then call renderButtons() to generate its button
-        renderButtons();
-    });
 
     // Add a click event listener to new all elements with a class of "gif-btn" and run displayGif function
     $(document).on("click", ".gif-btn", displayGif);
