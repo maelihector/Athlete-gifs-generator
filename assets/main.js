@@ -7,42 +7,61 @@ function displayGif() {
     var gif = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=astronomy+" +
         gif + "&api_key=HxF2W3delLN8HvwXkOdecyRXMrU3FzgS&rating=g&limit=10"; // set rating=g and specify to return only 10 gifs with limit=10.
-    // AJAX call
 
-    $.get(queryURL)
+    // AJAX call, then create a function that takes the AJAX returned Object, and label it as 'response', 
+    $.get(queryURL).then(function (response) {
+        console.log(response); // check response
+        // then create var 'results' that stores response.data.
+        var results = response.data;
 
-        // Create a function that takes the AJAX returned Object, and label it as 'response', 
-        .then(function (response) {
-            console.log(response); // check response
-            // then create var 'results' that stores response.data.
-            var results = response.data;
+        // Loop through the result (which holds 10 seperate gifs),
+        for (var i = 0; i < results.length; i++) {
+            // create a <div> to hold the gif,
+            var gifDiv = $("<div>");
 
-            // Loop through the result (which holds 10 seperate gifs),
-            for (var i = 0; i < results.length; i++) {
-                // create a <div> to hold the gif,
-                var gifDiv = $("<div>");
+            // retrieve still url that will be used to display initial image
+            // and store it in var imgURL,
+            var imgURL = results[i].images.original_still.url;
 
-                // retrieve still url that will be used to display initial image
-                // and store it in var imgURL,
-                var imgURL = results[i].images.original_still.url;
-                // then create an <img> and add the still url retreived src to it
-                // and store it in var image.
-                var image = $("<img>").attr("src", imgURL);
+            // then create an <img>,
+            // add attr 'src' with the url retreived,
+            // add attr 'gif-still' with the same url retreived
+            // add attr 'state' called 'still'
+            // add class called .gif
+            // and store it in image var.
+            var image = $("<img>").attr("src", imgURL).attr("gif-still", imgURL).attr("state", "still").addClass("gif");
 
-                // Append the image
-                gifDiv.append(image);
+            // Append the image
+            gifDiv.append(image);
 
-                // Retrieve the rating and store in 'rating' var
-                var rating = results[i].rating;
-                // Create a <p> to display rating
-                var p = $("<p>").text("Rating: " + rating);
-                // Append the paragraph
-                gifDiv.append(p);
+            // Retrieve the rating and store in 'rating' var
+            var rating = results[i].rating;
+            // Create a <p> to display rating
+            var p = $("<p>").text("Rating: " + rating);
+            // Append the paragraph
+            gifDiv.append(p);
 
-                // Add gifs to the beginning of gifs-view.
-                $("#gifs-view").prepend(gifDiv);
+            // Retrieve the URL for the animated gif 
+            // and add attr of gif-animate to hold the result
+            image.attr("gif-animate", results[i].images.original.url);
+
+            // Add gifs to the beginning of gifs-view.
+            $("#gifs-view").prepend(gifDiv);
+        }
+        // Event listener for images clicked
+        $(".gif").on("click", function () {
+            // Get the value of the attribute clicked and store it in var state
+            var state = $(this).attr("state");
+            // Toggle between state="still" and state="animate" with each click
+            if (state === "still") {
+                $(this).attr("src", $(this).attr("gif-animate"));
+                $(this).attr("state", "animate");
+            } else {
+                $(this).attr("src", $(this).attr("gif-still"));
+                $(this).attr("state", "still");
             }
-        })
+        });
+    })
 }
 // Function for generating gif buttons
 function renderButtons() {
