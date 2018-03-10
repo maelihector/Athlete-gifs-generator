@@ -3,7 +3,7 @@ $(document).ready(() => {
     var gifs = ["Serena Williams", "Cristiano Ronaldo", "Rafael Nadal", "Tom Brady", "Guillermo Ochoa",
         "Simone Biles",
         "Manu Ginobili", "Gerard Pique", "Maria Sharapova", "James Rodriguez", "Russel Westbrook",
-        "Lindsey Vonn", "Antoine Griezmann", "LeBron James", "Roger Federer", "Neymar",
+        "Lindsey Vonn", "LeBron James", "Roger Federer", "Neymar",
     ];
 
     // Function to render appropriate gifs
