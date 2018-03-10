@@ -1,7 +1,7 @@
-# gifTastic
+# gifTastic HW
 
 ## Using the GIPHY API to make a dynamic web page.
-- - -
+
 ### What is this?
 
 This Famous Athlete Gifs site is a project that I built as one of 
