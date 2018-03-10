@@ -39,7 +39,7 @@ $(document).ready(() => {
                 // add attr 'gif-animate' of animateGif
                 // add class of .gif
                 // and store it in image var.
-                var image = $("<img>").attr("src", stillGif).attr("gif-still", stillGif).attr("state", "still").attr("gif-animate", animateGif).addClass("gif");
+                var image = $("<img>").attr("src", stillGif).attr("gif-still", stillGif).attr("state", "still").attr("gif-animate", animateGif).addClass("gif").attr("alt", "famous athlete");
 
                 // Retrieve the rating and store in 'rating' var
                 var rating = results[i].rating;
