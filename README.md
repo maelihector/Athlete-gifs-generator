@@ -1,12 +1,13 @@
-## gifTastic
+# gifTastic
 
-# Using the GIPHY API to make a dynamic web page.
-
+## Using the GIPHY API to make a dynamic web page.
+- - -
 ### What is this?
 
 This Famous Athlete Gifs site is a project that I built as one of 
 The UT Coding Boot Camp assignments, and is meant to demonstrate knowledge of API calls. 
 
+- - -
 ### What does this do?
 
 **The site uses an AJAX call to the [Giphy API](https://github.com/Giphy).**
