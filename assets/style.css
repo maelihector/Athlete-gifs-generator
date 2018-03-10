@@ -1,0 +1,27 @@
+label {
+    color: #195fd8;
+    font-size: 18px;
+}
+
+h1 {
+    color: #195fd8;
+}
+
+img {
+    height: 200px;
+    width: 200px;
+}
+
+p {
+    text-align: center;
+}
+
+.btn {
+    margin: 5px;
+}
+
+.gifStyle {
+   float: left;
+    margin: 5px;
+    
+}

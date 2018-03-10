@@ -11,33 +11,29 @@
         crossorigin="anonymous">
     <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="./assets/style.css">
-    <title>Astronomy Gifs</title>
+    <title>Famous Athlete Gifs</title>
 </head>
 
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
+            <h1 class="text-center">Famous Athlete Gifs</h1>
             <!-- My buttons will go here -->
             <div id="buttons-view"></div>
-
+            <br>
             <form>
                 <label for="gif-input">Add Your Own Button: </label>
                 <input type="text" id="gif-input">
-
                 <!-- Submit to generate new button -->
                 <input id="add-gif" class="btn btn-primary" type="submit" value="Add Button">
             </form>
-
         </div>
     </div>
     <div class="container">
         <!-- Gifs will get dumped here -->
-        <div id="gifs-view"></div>
+        <div id="gifs-view" class="mx-auto"></div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   
-
     <!-- My JavaScript -->
     <script type="text/javascript" src="./assets/main.js"></script>
 </body>
