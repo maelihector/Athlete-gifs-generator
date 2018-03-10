@@ -1,17 +1,17 @@
 $(document).ready(() => {
-    // Initial array of gifs
-    var gifs = ["Serena Williams", "Cristiano Ronaldo", "Rafael Nadal", "Tom Brady", "Guillermo Ochoa",
+    // Initial array of topics
+    var topics = ["Serena Williams", "Cristiano Ronaldo", "Rafael Nadal", "Tom Brady", "Guillermo Ochoa",
         "Simone Biles",
         "Manu Ginobili", "Gerard Pique", "Maria Sharapova", "James Rodriguez", "Russel Westbrook",
         "Lindsey Vonn", "LeBron James", "Roger Federer", "Neymar",
     ];
 
-    // Function to render appropriate gifs
+    // Function to render appropriate topics
     function displayGif() {
         
         var gif = $(this).attr("data-name");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-            gif + "&api_key=HxF2W3delLN8HvwXkOdecyRXMrU3FzgS&rating=g&limit=10";
+            gif + "&api_key=HxF2W3delLN8HvwXkOdecyRXMrU3FzgS&rating=pg&limit=10";
 
         // AJAX call, then create a function that takes the AJAX returned Object, and label it as 'response', 
         $.get(queryURL).then(function (response) {
@@ -60,10 +60,10 @@ $(document).ready(() => {
                     }
                 });
 
-                // Append the paragraph
-                gifDiv.append(p);
                 // Append the image
                 gifDiv.append(image);
+                // Append the paragraph
+                gifDiv.append(p);
 
                 // Add gifs to the beginning of gifs-view.
                 $("#gifs-view").prepend(gifDiv);
@@ -78,17 +78,17 @@ $(document).ready(() => {
         // Delete the gifs prior to re-looping through the array
         $("#buttons-view").empty();
         
-        // Loop through gifs array
-        for (var i = 0; i < gifs.length; i++) {
+        // Loop through topics array
+        for (var i = 0; i < topics.length; i++) {
             
             // Generate a button for each gif in the array
             var a = $("<button>");
             // Add a class of gif-btn to each button
             a.addClass("gif-btn btn btn-primary");
             // Add an attribute of data-name to each button
-            a.attr("data-name", gifs[i]);
+            a.attr("data-name", topics[i]);
             // Labeling the button with the array item string
-            a.text(gifs[i]);
+            a.text(topics[i]);
             // Adding the button to the buttons-view div
             $("#buttons-view").append(a);
         }
@@ -114,8 +114,8 @@ $(document).ready(() => {
             return false
         }
 
-        // and add/push new gif to our gifs array
-        gifs.push(gif);
+        // and add/push new gif to our topics array
+        topics.push(gif);
 
         // then call renderButtons() to generate new button
         renderButtons();
