@@ -2,8 +2,8 @@ $(document).ready(() => {
     // Initial array of topics
     var topics = ["Serena Williams", "Cristiano Ronaldo", "Rafael Nadal", "Tom Brady", "Guillermo Ochoa",
         "Simone Biles",
-        "Manu Ginobili", "Gerard Pique", "Maria Sharapova", "James Rodriguez", "Russel Westbrook",
-        "Lindsey Vonn", "LeBron James", "Roger Federer", "Neymar",
+        "Manu Ginobili", "Gerard Pique", "James Rodriguez", "Russell Westbrook",
+        "Lindsey Vonn", "Nick Young", "Roger Federer", "Neymar", "Vince Wilfork"
     ];
 
     // Function to render appropriate topics
