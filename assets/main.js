@@ -114,8 +114,11 @@ $(document).ready(() => {
             return false
         }
 
+        
+        if( topics.indexOf(gif) > -1 ) return;
         // and add/push new gif to our topics array
         topics.push(gif);
+       
 
         // then call renderButtons() to generate new button
         renderButtons();
