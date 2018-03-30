@@ -4,7 +4,6 @@
 
 This Famous Athlete Gifs site is a project that I built as one of 
 The UT Coding Boot Camp assignments, and is meant to demonstrate knowledge of API calls. 
-
 - - -
 ### What does this do?
 
