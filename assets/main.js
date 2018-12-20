@@ -8,7 +8,7 @@ $(document).ready(() => {
 
     // Function to render appropriate topics
     function displayGif() {
-        
+
         var gif = $(this).attr("data-name");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
             gif + "&api_key=HxF2W3delLN8HvwXkOdecyRXMrU3FzgS&rating=pg&limit=10";
@@ -71,16 +71,16 @@ $(document).ready(() => {
             }
         })
     }
-    
+
     // Function for generating gif buttons
     function renderButtons() {
-        
+
         // Delete the gifs prior to re-looping through the array
         $("#buttons-view").empty();
-        
+
         // Loop through topics array
         for (var i = 0; i < topics.length; i++) {
-            
+
             // Generate a button for each gif in the array
             var a = $("<button>");
             // Add a class of gif-btn to each button
@@ -100,7 +100,7 @@ $(document).ready(() => {
         function () {
             $(this).val('');
         });
-        // Function here
+    // Function here
     $("#add-gif").on("click", function (event) {
 
         event.preventDefault();
@@ -114,16 +114,16 @@ $(document).ready(() => {
             return false
         }
 
-        
-        if( topics.indexOf(gif) > -1 ) return;
+
+        if (topics.indexOf(gif) > -1) return;
         // and add/push new gif to our topics array
         topics.push(gif);
-       
+
 
         // then call renderButtons() to generate new button
         renderButtons();
     });
-    
+
     // Call the renderButtons function to display the intial buttons
     renderButtons();
 

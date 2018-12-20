@@ -1,18 +1,35 @@
-## Using the GIPHY API to make a dynamic web page.
+# Famous Athletes Gifs
 
-### What is this?
+## What does it do?
+The project uses JavaScript and jQuery to change the HTML of the webpage.
 
-This Famous Athlete Gifs site is a project that I built as one of 
-The UT Coding Boot Camp assignments, and is meant to demonstrate knowledge of API calls. 
-- - -
-### What does this do?
+The webpage uses an AJAX request to [Giphy](https://github.com/Giphy) to populate gifs on the page. 
 
-**The site uses an AJAX call to the [Giphy API](https://github.com/Giphy).**
+## How does it work?
+**Initial List of Buttons**
+There is an existing array of strings labeled `topics` that holds the names of several famous athletes, and at `document.ready()`, using jQuery, we generate buttons for each value of `topics` and dump them on the page.
 
-There is an initial array of strings stored in a variable called `topics`, and for each value in `topics` a button is created and displayed on the HTML. 
+**User Added Buttons**
+Under the list of`topics` buttons there is a form that allows the user to enter their own value of a 'famous athlete' to `.push()` into the existing `topics` array. The page then re-render's the buttons with the new `topics` array that includes the user's input.
 
-When a button is clicked, the page grabs 10 static, non-animated gif images from the GIPHY API and places them on the page.
+**Generating Gifs**
+When any of the buttons are clicked, the page grabs 10 static, non-animated gif images from the GIPHY API and dumps them on the page.
 
-With the clicking of each gif image the user can toggle between animating the gif and making it still.
+**Animating the Gifs**
+By clicking a gif image the user can toggle between animating the gif and making it still.
 
-There is also a form that takes the user's value and appends it to `topics` array. Each time a new value is added to `topics`, a function takes the new array and remakes the buttons on the page.
+
+## Technologies Used
+
+1. HTML
+2. CSS
+3. [BootStrap](https://getbootstrap.com/)
+4. JavaScript
+5. [jQuery](https://jquery.com/)
+
+
+## Credits
+
+- Gifs from [Giphy](https://github.com/Giphy)
+
+- This README was written with [StackEdit](https://stackedit.io/)
