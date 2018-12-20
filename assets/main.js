@@ -14,62 +14,68 @@ $(document).ready(() => {
             gif + "&api_key=HxF2W3delLN8HvwXkOdecyRXMrU3FzgS&rating=pg&limit=10";
 
         // AJAX call, then create a function that takes the AJAX returned Object, and label it as 'response', 
-        $.get(queryURL).then(function (response) {
-            console.log(response); // check response
-            // then create var 'results' that stores response.data.
-            var results = response.data;
+        // Perfoming an AJAX GET request to our queryURL
+        $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+            // After the data from the AJAX request comes back
+            .then(function (response) {
+                console.log(response); // check response
+                // then create var 'results' that stores response.data.
+                var results = response.data;
 
-            // Loop through the result (which holds 10 seperate gifs),
-            for (var i = 0; i < results.length; i++) {
+                // Loop through the result (which holds 10 seperate gifs),
+                for (var i = 0; i < results.length; i++) {
 
-                // create a <div> to hold the gif,
-                var gifDiv = $("<div>").addClass("gifStyle");
+                    // create a <div> to hold the gif,
+                    var gifDiv = $("<div>").addClass("gifStyle");
 
-                // retrieve still url that will be used to display initial image
-                // and store it in var stillGif.
-                var stillGif = results[i].images.original_still.url;
+                    // retrieve still url that will be used to display initial image
+                    // and store it in var stillGif.
+                    var stillGif = results[i].images.original_still.url;
 
-                // Retrieve the URL for the animated gif  and store it in var animateGif.
-                var animateGif = results[i].images.original.url;
+                    // Retrieve the URL for the animated gif  and store it in var animateGif.
+                    var animateGif = results[i].images.original.url;
 
-                // then create an <img>,
-                // add attr 'src' of stillGif,
-                // add attr 'gif-still' of stillGif
-                // add attr 'state' of'still'
-                // add attr 'gif-animate' of animateGif
-                // add class of .gif
-                // and store it in image var.
-                var image = $("<img>").attr("src", stillGif).attr("gif-still", stillGif).attr("state", "still").attr("gif-animate", animateGif).addClass("gif").attr("alt", "famous athlete");
+                    // then create an <img>,
+                    // add attr 'src' of stillGif,
+                    // add attr 'gif-still' of stillGif
+                    // add attr 'state' of'still'
+                    // add attr 'gif-animate' of animateGif
+                    // add class of .gif
+                    // and store it in image var.
+                    var image = $("<img>").attr("src", stillGif).attr("gif-still", stillGif).attr("state", "still").attr("gif-animate", animateGif).addClass("gif").attr("alt", "famous athlete");
 
-                // Retrieve the rating and store in 'rating' var
-                var rating = results[i].rating;
-                // Create a <p> to display rating
-                var p = $("<p>").text("Rating: " + rating);
+                    // Retrieve the rating and store in 'rating' var
+                    var rating = results[i].rating;
+                    // Create a <p> to display rating
+                    var p = $("<p>").text("Rating: " + rating);
 
-                // Event listener for the qimage clicked
-                $(image).on("click", function () {
-                    // Get the value of the attribute clicked and store it in var state
-                    var state = $(this).attr("state");
-                    // Toggle between state="still" and state="animate" with each click
-                    if (state === "still") {
-                        $(this).attr("src", $(this).attr("gif-animate"));
-                        $(this).attr("state", "animate");
-                    } else if (state === "animate") {
-                        $(this).attr("src", $(this).attr("gif-still"));
-                        $(this).attr("state", "still");
-                    }
-                });
+                    // Event listener for the qimage clicked
+                    $(image).on("click", function () {
+                        // Get the value of the attribute clicked and store it in var state
+                        var state = $(this).attr("state");
+                        // Toggle between state="still" and state="animate" with each click
+                        if (state === "still") {
+                            $(this).attr("src", $(this).attr("gif-animate"));
+                            $(this).attr("state", "animate");
+                        } else if (state === "animate") {
+                            $(this).attr("src", $(this).attr("gif-still"));
+                            $(this).attr("state", "still");
+                        }
+                    });
 
-                // Append the image
-                gifDiv.append(image);
-                // Append the paragraph
-                gifDiv.append(p);
+                    // Append the image
+                    gifDiv.append(image);
+                    // Append the paragraph
+                    gifDiv.append(p);
 
-                // Add gifs to the beginning of gifs-view.
-                $("#gifs-view").prepend(gifDiv);
+                    // Add gifs to the beginning of gifs-view.
+                    $("#gifs-view").prepend(gifDiv);
 
-            }
-        })
+                }
+            })
     }
 
     // Function for generating gif buttons
