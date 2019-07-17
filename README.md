@@ -31,21 +31,21 @@ Under the list of athlete buttons there is a form that allows the user to enter 
 
 By initially appending each generated gif's `$("<image>")` element the following attributes:
 ```
-.attr("src", stillGifSrc)  				    // stillGifSrc is a variable that holds the still gif image source
-.attr("gif-still", stillGifSrc)			  // 'gif-still' attribute is added for when the user animated the gif but wants to go back to 'still'
-.attr("state", "still")					      // state is initially set to 'still'
-.attr("gif-animate", animateGifSrc)	 	// animateGifSrc is a variable that holds the animated gif image source
+.attr("src", stillGifSrc) // stillGifSrc is a variable that holds the still gif image source
+.attr("gif-still", stillGifSrc) // 'gif-still' attribute is added for when the user animated the gif but wants to go back to 'still'
+.attr("state", "still") // state is initially set to 'still'
+.attr("gif-animate", animateGifSrc) // animateGifSrc is a variable that holds the animated gif image source
 ```
 We are then able to toggle between animated and non-animated gifs with each `click` event registered on the image with the following code:
 ```
 $(image).on("click", function () {
- var state = $(this).attr("state"); 				        // state grabs value of 'still' or 'animate'
- if (state  ===  "still") {							            // if state is 'still'
-  $(this).attr("src", $(this).attr("gif-animate"));	// change the 'src' to the value of the 'gif-animate' attribute	
-  $(this).attr("state", "animate");					        // change state to 'animate'
- } else  if (state  ===  "animate") {				        // if state is 'animate'
-  $(this).attr("src", $(this).attr("gif-still"));	  // change the 'src' to the value of the 'gif-still' attribute
-  $(this).attr("state", "still");					          // change the state to 'still'
+ var state = $(this).attr("state"); // state grabs value of 'still' or 'animate'
+ if (state  ===  "still") { // if state is 'still'
+  $(this).attr("src", $(this).attr("gif-animate")); // change the 'src' to the value of the 'gif-animate' attribute	
+  $(this).attr("state", "animate"); // change state to 'animate'
+ } else  if (state  ===  "animate") { // if state is 'animate'
+  $(this).attr("src", $(this).attr("gif-still")); // change the 'src' to the value of the 'gif-still' attribute
+  $(this).attr("state", "still"); // change the state to 'still'
  }
 });
 ```
