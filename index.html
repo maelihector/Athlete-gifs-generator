@@ -2,45 +2,47 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <!-- My CSS -->
-    <link rel="stylesheet" type="text/css" href="./assets/style.css">
-    <title>Famous Athlete Gifs</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- My CSS -->
+  <link rel="stylesheet" type="text/css" href="./assets/style.css">
+  <title>Famous Athlete Gifs</title>
 </head>
 
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="text-center">Famous Athlete Gifs</h1>
-            <hr>
-            <h2 class="text-center">Click on a button to generate gifs.</h2>
-            <!-- My buttons will go here -->
-            <div id="buttons-view"></div>
-            <br>
-            <form>
-                <label for="gif-input">Add Your Own Button: </label>
-                <input type="text" id="gif-input">
-                <!-- Submit to generate new button -->
-                <input id="add-gif" class="btn btn-primary" type="submit" value="Add Button">
-            </form>
-        </div>
-    </div>
-
-    <h3 class="text-center">Click on a gif to animate and re-click to stop animation.</h3>
-
+  <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <!-- Gifs will get dumped here -->
-        <div id="gifs-view" class="mx-auto"></div>
+      <h1 class="text-center">Famous Athlete Gifs</h1>
+      <hr>
+      <h2 class="text-center">Click on a button to generate gifs.</h2>
+      <!-- My buttons will go here -->
+      <div id="buttons-view"></div>
+      <br>
+      <form>
+        <label for="gif-input">Add Your Own Button: </label>
+        <input type="text" id="gif-input">
+        <!-- Submit to generate new button -->
+        <input id="add-gif" class="btn btn-primary" type="submit" value="Add Button">
+      </form>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- My JavaScript -->
-    <script type="text/javascript" src="./assets/main.js"></script>
+  </div>
+
+  <h3 class="text-center">Click on a gif to animate and re-click to stop animation.</h3>
+
+  <div class="container">
+    <!-- Gifs will get dumped here -->
+    <div id="gifs-view" class="mx-auto"></div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- My JavaScript -->
+  <script src="./assets/main.js"></script>
 </body>
 
 </html>

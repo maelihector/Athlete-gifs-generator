@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(document).ready(function () {
   // Initial array of topics
   var topics = ["Serena Williams", "Cristiano Ronaldo", "Rafael Nadal", "Tom Brady", "Guillermo Ochoa",
     "Simone Biles",
@@ -8,52 +8,47 @@ $(document).ready(() => {
 
   // Function to render appropriate topics
   function displayGif() {
-
+    // Get reference to which athelete the user wants
     var gif = $(this).attr("data-name");
+    // Query Giphy API along with althlete name, api key, and query parameters of rating=pg, and limit=10
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
       gif + "&api_key=HxF2W3delLN8HvwXkOdecyRXMrU3FzgS&rating=pg&limit=10";
 
-    // AJAX call, then create a function that takes the AJAX returned Object, and label it as 'response', 
-    // Perfoming an AJAX GET request to our queryURL
+    // Perform an AJAX GET request to the queryURL
     $.ajax({
         url: queryURL,
-        method: "GET"
+        method: "GET",
+        datatype: "json"
       })
-      // After the data from the AJAX request comes back
+      // When query resolves, create elements to hold gifs and append to the DOM
       .then(function (response) {
-        // then create var 'results' that stores response.data.
+        // Fetch `data` from response object
         var results = response.data;
-
-        // Loop through the result (which holds 10 seperate gifs),
+        // Loop through the result (which holds 10 seperate gifs)
         for (var i = 0; i < results.length; i++) {
-
-          // create a <div> to hold the gif,
+          // Create a <div> to hold the gif and add CSS
           var gifDiv = $("<div>").addClass("gifStyle");
-
-          // retrieve still url that will be used to display initial image
-          // and store it in var stillGif.
+          // Retrieve the URL for the still gif
           var stillGif = results[i].images.original_still.url;
-
-          // Retrieve the URL for the animated gif  and store it in var animateGif.
+          // Retrieve the URL for the animated gif
           var animateGif = results[i].images.original.url;
 
-          // then create an <img>,
-          // add attr 'src' of stillGif,
-          // add attr 'gif-still' of stillGif
-          // add attr 'state' of'still'
-          // add attr 'gif-animate' of animateGif
-          // add class of .gif
-          // and store it in image var.
-          var image = $("<img>").attr("src", stillGif).attr("gif-still", stillGif).attr("state", "still").attr("gif-animate", animateGif).addClass("gif").attr("alt", "famous athlete");
+          // Create <img> and add class and needed attributes
+          var image = $("<img>").attr({
+            "src": stillGif,
+            "gif-still": stillGif,
+            "state": "still",
+            "gif-animate": animateGif,
+            "alt": "famous athlete"
+          }).addClass("gif");
 
-          // Retrieve the rating and store in 'rating' var
+          // Retrieve the rating and add to <p> element
           var rating = results[i].rating;
-          // Create a <p> to display rating
           var p = $("<p>").text("Rating: " + rating);
 
-          // Event listener for the qimage clicked
+          // Event listener to toggle gif animation
           $(image).on("click", function () {
-            // Get the value of the attribute clicked and store it in var state
+            // Get the state of the clicked on gif
             var state = $(this).attr("state");
             // Toggle between state="still" and state="animate" with each click
             if (state === "still") {
@@ -70,11 +65,10 @@ $(document).ready(() => {
           // Append the paragraph
           gifDiv.append(p);
 
-          // Add gifs to the beginning of gifs-view.
+          // Append gifts to the DOM
           $("#gifs-view").prepend(gifDiv);
-
         }
-      })
+      });
   }
 
   // Function for generating gif buttons
@@ -85,27 +79,20 @@ $(document).ready(() => {
 
     // Loop through topics array
     for (var i = 0; i < topics.length; i++) {
-
       // Generate a button for each gif in the array
       var a = $("<button>");
       // Add a class of gif-btn to each button
       a.addClass("gif-btn btn btn-primary");
       // Add an attribute of data-name to each button
       a.attr("data-name", topics[i]);
-      // Labeling the button with the array item string
+      // Label the button with the array item string
       a.text(topics[i]);
-      // Adding the button to the buttons-view div
+      // Add the button to the buttons-view div
       $("#buttons-view").append(a);
     }
   }
 
-  // Create function to handle the event for when an input value is submitted
-  // First mpty text field when user clicks in it
-  $("#gif-input").click(
-    function () {
-      $(this).val('');
-    });
-  // Function here
+  // Functions to handle button sumbit event
   $("#add-gif").on("click", function (event) {
 
     event.preventDefault();
@@ -113,26 +100,27 @@ $(document).ready(() => {
     // Grab the input from the textbox, trim white space
     var gif = $("#gif-input").val().trim();
 
-    // prevent submit if text-input field is empty
+    // Prevent submit if text-input field is empty
     if (gif.length === 0) {
-      alert("Text-box is empty!")
-      return false
+      alert("Text-box is empty!");
+      return false;
     }
 
-
     if (topics.indexOf(gif) > -1) return;
-    // and add/push new gif to our topics array
+    // Push new gif to topics array
     topics.push(gif);
 
-
-    // then call renderButtons() to generate new button
+    // Call renderButtons() to re-render button list with newly added button
     renderButtons();
+
+    // Empty text field
+    $("#gif-input").val('');
   });
 
   // Call the renderButtons function to display the intial buttons
   renderButtons();
 
-  // Add a click event listener to new all elements with a class of "gif-btn" and run displayGif function
+  // Add a click event listener to new all elements with a class of "gif-btn" and run displayGif function when clicked
   $(document).on("click", ".gif-btn", displayGif);
 
 });
